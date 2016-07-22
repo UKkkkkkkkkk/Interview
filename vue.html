@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <div class="navbar navbar-default">Vue demo</div>
+    <table class="table table-bordered">
+        <tr>
+            <td>序号</td>
+            <td>书名</td>
+            <td>作者</td>
+            <td>价格</td>
+            <td></td>
+        </tr>
+        <tr v-for="book in books">
+            <td>{{$index}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.count}}</td>
+
+            <td>
+                <button class="btn btn-primary" @click="delete(book)">删除</button>
+            </td>
+        </tr>
+        <tr></tr>
+    </table>
+    <div class="container">
+        <div class="form-group">
+            <label class="control-label">书名</label>
+            <input type="text" v-model="list.name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label class="control-label">作者</label>
+            <input type="text" v-model="list.author" class="form-control">
+        </div>
+        <div class="form-group">
+            <label class="control-label">价格</label>
+            <input type="text" v-model="list.count" class="form-control">
+        </div>
+        <button class="btn btn-block bg-danger" v-on:click="appendInfo">添加</button>
+    </div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            books: [
+                {name: '红楼梦', author: "曹雪芹", count: 32},
+                {name: '水浒传', author: "施耐庵", count: 30},
+                {name: '三国演义', author: "罗贯中", count: 24},
+                {name: '西游记', author: "吴承恩", count: 20},
+                {name: '金瓶梅', author: "兰陵笑笑生", count: 25}
+            ],
+            list: {
+                name: "",
+                price: "",
+                author: ""
+            }
+
+        },
+        methods: {
+            delete: function (book) {
+                this.books.$remove(book)
+            },
+            appendInfo: function () {
+                console.log(this);
+                this.books.push(this.list);
+                this.list = {
+                    name: "",
+                    price: "",
+                    author: ""
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

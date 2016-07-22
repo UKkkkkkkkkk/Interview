@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div class="navbar navbar-default">Angular demo</div>
+<div ng-init="books=[{name: '红楼梦', author: '曹雪芹', count: 32},
+{name: '水浒传', author: '施耐庵', count: 30},
+{name: '三国演义', author: '罗贯中', count: 24},
+{name: '西游记', author: '吴承恩', count: 20},
+{name: '金瓶梅', author: '兰陵笑笑生', count: 25}];" >
+<table class="table">
+    <tr>
+        <th>序号</th>
+        <th ng-click="flag='name'">书名</th>
+        <th ng-click="flag='age'">作者</th>
+        <th ng-click="flag='count'">价格</th>
+    </tr>
+    <tr ng-repeat="book in books | orderBy:flag">
+        <td>{{$index+1}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.count}}</td>
+    </tr>
+</table>
+
+</div>
+<script src="angular.js"></script>
+
+</body>
+</html>
