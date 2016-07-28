@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="app">
-    <div class="navbar navbar-default">Vue demo</div>
+    <div class="navbar navbar-default" v-model="name">{{name}}</div>
     <table class="table table-bordered">
         <tr>
             <td>序号</td>
@@ -21,7 +21,6 @@
             <td>{{book.name}}</td>
             <td>{{book.author}}</td>
             <td>{{book.count}}</td>
-
             <td>
                 <button class="btn btn-primary" @click="delete(book)">删除</button>
             </td>
@@ -49,6 +48,7 @@
     var vm = new Vue({
         el: "#app",
         data: {
+            name:"Vue demo",
             books: [
                 {name: '红楼梦', author: "曹雪芹", count: 32},
                 {name: '水浒传', author: "施耐庵", count: 30},

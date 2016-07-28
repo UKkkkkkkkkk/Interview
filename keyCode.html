@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{display: none}
+        .red{color:red}
+        .yellow{color:yellow}
+        .green{background:lawngreen}
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keydown.enter="enter | debounce 200" v-model="name">
+    <div v-for="l in list" v-cloak track-by="$index">
+        {{{l}}}<button  @click="del(l)">删除</button>
+    </div>
+</div>
+<script src="../vue.js"></script>
+<script>
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            name:"请输入内容",
+            list:[]
+        },
+        methods:{
+            enter: function () {
+                if(this.name){
+                    flag=this.list.length%2==1;
+                    console.log(flag);
+                    this.name="<div class='red'>"+this.name+"</div>";
+                    this.list.push(this.name)
+
+                }
+                this.name="";
+            },
+            del: function (l) {
+                this.list.$remove(l)
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>
