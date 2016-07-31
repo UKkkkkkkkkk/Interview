@@ -1,0 +1,18 @@
+function A(){
+    this.x=200;
+}
+A.prototype.getX= function () {
+    console.log(this.x);
+};
+
+//var a= new A()
+//a.getX()
+
+B.prototype=new A;
+function B(){
+    A.call(this);
+}
+var b=new B()
+B.prototype.constructor=B
+
+b.getX()
